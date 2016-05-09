@@ -1,0 +1,11 @@
+iit_ihm:
+    resource: "@IITIhmBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+home_root:
+    pattern : /index
+    defaults: { _controller: IITIhmBundle:Joueur:home} 

@@ -1,0 +1,184 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Joueur list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Nationalite</th>
+                <th>Datenaiss</th>
+                <th>Taille</th>
+                <th>Poids</th>
+                <th>Image</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in joueurs %}
+            <tr>
+                <td><a href="{{ path('joueur_show', { 'id': entity.id }) }}">{{ entity.nom }}</a></td>
+                <td>{{ entity.prenom }}</td>
+                <td>{{ entity.nationalite }}</td>
+                <td>{% if entity.datenaiss %}{{ entity.datenaiss|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.taille }}</td>
+                <td>{{ entity.poids }}</td>
+                <td>{{ entity.image }}</td>
+                <td>{{ entity.id }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('joueur_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('joueur_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('joueur_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+                
+                
+                
+                
+                <table class="records_list">
+        <thead>
+            <tr>
+                <th>Designation</th>
+                <th>Paysoraganisation</th>
+                <th>Datedeb</th>
+                <th>Datefin</th>
+                <th>Typecompetition</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in competitions %}
+            <tr>
+                <td><a href="{{ path('competition_show', { 'id': entity.id }) }}">{{ entity.designation }}</a></td>
+                <td>{{ entity.paysoraganisation }}</td>
+                <td>{% if entity.datedeb %}{{ entity.datedeb|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.datefin %}{{ entity.datefin|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.typecompetition }}</td>
+                <td>{{ entity.id }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('competition_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('competition_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+        
+        
+        
+        <table class="records_list">
+        <thead>
+            <tr>
+                <th>Buteq1</th>
+                <th>Buteq2</th>
+                <th>Pointeq1</th>
+                <th>Pointeq2</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in resultats %}
+            <tr>
+                <td><a href="{{ path('resultat_show', { 'id': entity.id }) }}">{{ entity.buteq1 }}</a></td>
+                <td>{{ entity.buteq2 }}</td>
+                <td>{{ entity.pointeq1 }}</td>
+                <td>{{ entity.pointeq2 }}</td>
+                <td>{{ entity.id }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('resultat_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('resultat_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+        
+        <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in parties %}
+            <tr>
+                <td><a href="{{ path('partie_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('partie_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('partie_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+        
+         <table class="records_list">
+        <thead>
+            <tr>
+                <th>Saison</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in calendrier %}
+            <tr>
+                <td><a href="{{ path('calendrier_show', { 'id': entity.id }) }}">{{ entity.saison }}</a></td>
+                <td>{{ entity.id }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('calendrier_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('calendrier_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+        
+        
+    {% endblock %}

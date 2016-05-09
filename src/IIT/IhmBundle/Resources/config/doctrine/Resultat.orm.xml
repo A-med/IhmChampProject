@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="IIT\IhmBundle\Entity\Resultat" table="resultat">
+    <indexes>
+      <index name="idPartie" columns="idPartie"/>
+      <index name="idEquipe1" columns="idEquipe1"/>
+      <index name="idEquipe2" columns="idEquipe2"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="buteq1" type="integer" column="butEq1" nullable="false"/>
+    <field name="buteq2" type="integer" column="butEq2" nullable="false"/>
+    <field name="pointeq1" type="integer" column="pointEq1" nullable="false"/>
+    <field name="pointeq2" type="integer" column="pointEq2" nullable="false"/>
+    <many-to-one field="idequipe2" target-entity="Equipe">
+      <join-columns>
+        <join-column name="idEquipe2" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idequipe1" target-entity="Equipe">
+      <join-columns>
+        <join-column name="idEquipe1" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idpartie" target-entity="Partie">
+      <join-columns>
+        <join-column name="idPartie" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

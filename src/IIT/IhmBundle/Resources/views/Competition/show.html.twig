@@ -1,0 +1,48 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Competition</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Designation</th>
+                <td>{{ entity.designation }}</td>
+            </tr>
+            <tr>
+                <th>Paysoraganisation</th>
+                <td>{{ entity.paysoraganisation }}</td>
+            </tr>
+            <tr>
+                <th>Datedeb</th>
+                <td>{{ entity.datedeb|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Datefin</th>
+                <td>{{ entity.datefin|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Typecompetition</th>
+                <td>{{ entity.typecompetition }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('competition') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('competition_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

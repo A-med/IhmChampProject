@@ -1,0 +1,44 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Resultat</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Buteq1</th>
+                <td>{{ entity.buteq1 }}</td>
+            </tr>
+            <tr>
+                <th>Buteq2</th>
+                <td>{{ entity.buteq2 }}</td>
+            </tr>
+            <tr>
+                <th>Pointeq1</th>
+                <td>{{ entity.pointeq1 }}</td>
+            </tr>
+            <tr>
+                <th>Pointeq2</th>
+                <td>{{ entity.pointeq2 }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('resultat') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('resultat_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}
