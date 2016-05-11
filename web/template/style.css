@@ -1,0 +1,292 @@
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding-left: 0;
+	padding-right:0;
+    overflow: hidden;
+    background-color: #333;
+	text-align: center;
+    
+	
+  
+}
+
+li {
+		float: none;
+      display: inline-block;
+    
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+	
+}
+
+li a:hover:not(.active) {
+    background-color: #111;
+}
+
+.active {
+    background-color: #BA000C;
+}
+.dim{
+	
+	margin-left:100px;
+	margin-right:100px;
+	height:1500px;
+	/*background-color:red;*/
+}
+.header{
+	
+    
+    margin-left:100px;
+	margin-right:100px;
+	background-color:#EEEFEF;
+	
+	
+}
+.logo{
+	display:inline;
+	padding-left:20px;
+	width: 200px;
+	height: 200px;
+	
+}
+
+.titre_header{
+	
+	display:inline;
+	padding-left:130px;
+	padding-top:0px;
+	font-family:Monospace;
+	font-variant: small-caps;
+	font-size:80px;
+	
+}
+.titre{
+	background-color: #BA000C;
+	width: 251px;
+	height: 20px;
+	border-style: ridge;
+    border-left: thick once #ff0000;
+	text-align: center;
+	font-weight: bold;
+	color: white;
+	letter-spacing: 2px;
+}
+.titre_calendrier{
+	background-color: #BA000C;
+	width: 411px;
+	height: 20px;
+	border-style: ridge;
+    border-left: thick once #ff0000;
+	text-align: center;
+	font-weight: bold;
+	color: white;
+	letter-spacing: 2px;
+}
+
+
+.mySlides{
+	width:600px;
+	height:404px;
+}
+
+.titre_classement{
+	background-color: #BA000C;
+	width: 694px;
+	height: 20px;
+	border-style: ridge;
+    border-left: thick once #ff0000;
+	text-align: center;
+	font-weight: bold;
+	color: white;
+	letter-spacing: 2px;
+}
+.titre_player{
+	background-color: #BA000C;
+	width: 1121px;
+	height: 20px;
+	border-style: ridge;
+    border-left: thick once #ff0000;
+	text-align: center;
+	font-weight: bold;
+	color: white;
+	letter-spacing: 2px;
+}
+
+
+.slide{
+	position:absolute;
+	border: #dedede solid 1px;
+	margin-left:265px;
+	width:600px;
+	height:404px;
+
+	
+
+}
+
+.asideResults{
+
+	position:absolute;
+	width: 257px;
+	height: 400px;
+	background-color: #EEEFEF;
+	border-style: ridge;
+    border-left: thick once #ff0000;
+	
+}
+.asideMatch{
+	
+	width: 257px;
+	height: 400px;
+	background-color: #EEEFEF;
+	border-style: ridge;
+    border-left: thick once #ff0000;
+}
+
+.asideClassement{
+	position:absolute;
+	width: 700px;
+	height: 376px;
+	
+	border-style: ridge;
+    border-left: thick once #ff0000;
+}
+.asidePlayer{
+	position:absolute;
+	width:1127;
+	height: 400px;
+	
+	border-style: ridge;
+    border-left: thick once #ff0000;
+}
+.asideCalendrier{
+	position:absolute;
+	width: 417px;
+	height: 376px;
+	background-color: #EEEFEF;
+	border-style: ridge;
+    border-left: thick once #ff0000;
+}
+.div-results{
+    position:absolute;
+    float: left;
+    
+    
+}
+.div-match{
+    position:absolute;
+    float: right;
+    padding-left: 870px;
+    
+}
+
+.div-classement{  
+	position: absolute;
+	float:left;
+	padding-top: 408px;
+    
+}
+.div_calendrier{
+	position:absolute;
+    float: right;
+    padding-left: 710px;
+	padding-top: 408px;
+}
+.div_player{
+	position:absolute;
+	padding-top: 792px;
+}
+.aside-slide{
+	background-color:yellow;
+}
+.image_equipe{
+	width:50px;
+	height:50px;
+}
+.row_match{
+	
+}
+.lien_classement{
+	
+	background-color:#CBC5C5;
+	height:25px;
+	text-align: right;
+    font-size: 17px;
+	display: block;
+    margin-top: 0em;
+}
+.lien_match{
+	
+	
+	height:15px;
+	text-align: right;
+    font-size: 14px;
+	display: block;
+    margin-top: 0em;
+}
+tr:nth-child(even){background-color: #f2f2f2}
+th, td {
+    text-align: left;
+    padding: 0px;
+}
+.info{
+	padding-top:5px;
+	
+}
+
+.button {
+    background-color: #BA000C;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    
+    cursor: pointer;
+	border-radius: 4px;
+}
+.aside_footer{
+	position:absolute;
+	background-color:#333;
+	margin-top:1200px;
+	width:1133;
+	height:200px;
+	
+}
+
+.image_player{
+	padding-left:55px;
+}
+
+.nomJoueur{
+	padding-left:55px;
+}
+
+.sous_footer{
+	color:#EEEFEF;
+	float:left;
+	padding-top:180px;
+	padding-left:10px;
+	
+}
+.sous_footer2{
+	color:#EEEFEF;
+	float:right;
+	padding-top:180px;
+	padding-right:10px;
+}
+.haut{
+	background-color:#333;
+	width:20px;
+	height:40px;
+	cursor: pointer;
+	border-radius: 4px;
+}

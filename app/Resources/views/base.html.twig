@@ -1,13 +1,40 @@
 <!DOCTYPE html>
 <html>
-    <head>
+  
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        
+        
+        {% block stylesheets %}
+     
+<link rel='stylesheet'  href="{{asset('template/style.css')}}" type='text/css'  />
+
+
+        {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+   
+ <body onLoad="Defaults()">
+ {% block body %}{% endblock %}</body>
+        {% block javascripts %}
+            
+            
+            <script type="text/javascript" src="{{asset('template/calendrier.js')}}"></script>
+        
+            <script>
+var myIndex = 0;
+carousel();
+
+function carousel() {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";  
+    }
+    myIndex++;
+    if (myIndex > x.length) {myIndex = 1}    
+    x[myIndex-1].style.display = "block";  
+    setTimeout(carousel, 4000); // Change image every 2 seconds
+}
+</script>{% endblock %}
     </body>
 </html>
