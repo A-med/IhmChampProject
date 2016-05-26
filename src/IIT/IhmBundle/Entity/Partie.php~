@@ -1,5 +1,5 @@
 <?php
-namespace IIT\IhmBundle\Entity;
+
 
 
 use Doctrine\ORM\Mapping as ORM;
@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Partie
  *
- * @ORM\Table(name="partie", indexes={@ORM\Index(name="idEquipe", columns={"idEquipe"}), @ORM\Index(name="idStade", columns={"idStade"}), @ORM\Index(name="idCompetition", columns={"idCompetition"}), @ORM\Index(name="idDate", columns={"idDate"})})
+ * @ORM\Table(name="partie", indexes={@ORM\Index(name="idStade", columns={"idStade"}), @ORM\Index(name="idCompetition", columns={"idCompetition"}), @ORM\Index(name="idDate", columns={"idDate"}), @ORM\Index(name="idEquipe2", columns={"idEquipe2"}), @ORM\Index(name="idEquipe1", columns={"idEquipe1"})})
  * @ORM\Entity
  */
 class Partie
@@ -26,10 +26,10 @@ class Partie
      *
      * @ORM\ManyToOne(targetEntity="Equipe")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idEquipe", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="idEquipe2", referencedColumnName="id")
      * })
      */
-    private $idequipe;
+    private $idequipe2;
 
     /**
      * @var \Stade
@@ -60,6 +60,16 @@ class Partie
      * })
      */
     private $iddate;
+
+    /**
+     * @var \Equipe
+     *
+     * @ORM\ManyToOne(targetEntity="Equipe")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idEquipe1", referencedColumnName="id")
+     * })
+     */
+    private $idequipe1;
 
 
 }

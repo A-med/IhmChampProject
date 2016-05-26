@@ -1,411 +1,558 @@
 {% extends '::base.html.twig' %}
+
 {% block body %}
+
+
+    <script  src="{{asset('template/calendrier.js')}}"></script>
+
+    <div class="header">
+        <div class="logo">
+            <img src="{{asset('template/image/logo.png')}}" alt="logo" />
+        </div>
+      
+        <div class="titre_header">
+            Football Soccer
+        </div>
  
+    </div>
+    <div class="dim">
+        <div class="nav">
+
+            <ul>
+
+                <li id="home" action="onClick()"><a href="#" >Home</a></li>
+                <li id="standing"><a href="#">Standing</a></li>
+                <li id="player"><a href="#">Players</a></li>
+                <li id="results"><a href="#">Results</a></li>
+                <li id="match"><a href="#">Next Match</a></li>
+                <li id="competition">
+                    <a href="#">Competitions</a>
+                    <ul>
+                        <li id="cup"><a href="#">Cup</a></li>
+                        <li id="champ"><a href="#">Championship</a></li>
+
+                    </ul>
+                </li>
+             
+            </ul>
+
+        </div>
+
+        <div id="content_Standing" >
+            <div class="divStanding">
+                <aside class="asideStanding">
+                    <div class="titre_Standing">Standing</div>
+                    <table rules="rows" style="width:1127px;">
+                        <thead>
+                        <tr>
+                                <td style="width:70px;padding-left:15px;font-weight: bold;">Position</td>
+                                <td style="width:70px;font-weight: bold;">Team</td>
+                                <td style="font-weight: bold;">Name</td>
+                                <td style="font-weight: bold;">Points</td>
+                                <td style="font-weight: bold;">Win</td>
+                                <td style="font-weight: bold;">Lost</td>
+                                <td style="font-weight: bold;">Draw</td>
+                                 <td style="font-weight: bold;">Played</td>
+                            </tr>  
+                        </thead>
+                        <tbody>
+                            {% set  compteur=1 %}
+                            {% for entity in equipe  %}
+                                
+                             <tr>
+                                 <td style="width:70px;padding-left:15px"> {{compteur}} </td>
+                                 <td> <img class="image_equipe" src="{{asset('template/image/imageequipe/')}}{{entity.logo}}.png" > </td>
+                                 <td><span>{{entity.designation}}</span> </td>
+                                 <td style="font-weight: bold;padding-left:15px">{{(entity.g)*3+(entity.n)*1}}</td>
+                                 <td style="padding-left:10px">{{entity.g}}</td>
+                                 <td style="padding-left:10px">{{entity.p}}</td>
+                                 <td style="padding-left:10px">{{entity.n}}</td>
+                                 <td style="padding-left:10px">{{entity.j}}</td>
+                             </tr>
+                                 {% set  compteur=compteur+1 %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                </aside>
+            </div>
+        </div>
+
+
+        <div id="content_players">
+
+
+            <div class="divListTeams">
+                <aside class="asideListTeams">
+                    <div class="titre_list_team">List of teams</div>
+                    <table rules="rows" style="width:552px;">
+                        <thead>
+
+                            <tr >
+                                
+                                <td style="padding-left:20px;width:70px;font-weight: bold;">Team</td>
+                                <td style="font-weight: bold;">Name</td>
+
+                            </tr>
+                        </thead>
+                        <tbody class="trTeam"  >
+                            {% for entity in equipe  %}
+                                <tr id="trTeam{{entity.id}}" class="oneTeam" onclick="goToUrl({{entity.id}})" > 
+                           
+                                   
+                                    
+                                     <td style="padding-left:20px;"> <img class="image_equipe" src="{{asset('template/image/imageequipe/')}}{{entity.logo}}.png" > </td>
+                                    <td><span>{{entity.designation}}</span></td>
+                           
+                                </tr> 
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </aside>
+            </div>
+                        <div class="divListPlayer" id="players">
+
+     
+                            
+            </div>
+
+
+        </div>
+
+
+        <div id="content_results">
+            <aside class="aside_tab_result" style="overflow:auto;overflow-x: hidden;">
+                <div class="titre_tab_player">All Results</div>
+
+                <table rules="rows" style="width:1127px;">
+                    <thead>
+
+                    </thead>
+                    <tbody>
+                        {% for entity in resultats  %}
+                            <tr>
+                                <td style="padding-left: 170px;width:170px;font-weight: bold;"><span>{{entity.idequipe1}}</span></td>
+                                <td style="width:170px;font-weight: bold;">
+                                    <a  href="#"><img class="image_equipe" src="{{asset('template/image/imageeq/')}}{{entity.idequipe1}}.png" ></a> 
+
+                                </td>
+                                <td style="width:20px;font-weight: bold;">
+                                    {{entity.buteq1}}
+                                </td>
+
+                                <td style="width:20px;font-weight: bold;">-</td>
+
+                                <td style="width:170px;font-weight: bold;">
+                                    {{entity.buteq2}}
+                                </td>
+                                <td style="font-weight: bold;">
+                                    <a  href="#"><img class="image_equipe" src="{{asset('template/image/imageeq/')}}{{entity.idequipe2}}.png" ></a> 
+
+                                </td>
+                                <td style="font-weight: bold;"><span>{{entity.idequipe2}}</span></td>
+                            </tr>
+                        {% endfor%}
+                    </tbody>
+                </table>
+
+
+            </aside>
+        </div>
+
+
+        <div id="content_match" >
+            <aside class="aside_tab_result" style="overflow:auto;overflow-x: hidden;">
+                <div class="titre_tab_player">Match</div>
+
+                    <table rules="rows" style="width:1127px;">
+                    <thead>
+
+                    </thead>
+                    <tbody>
+                       {% for entity in parties  %}
+                             {% if "now"|date('Y-m-d')  < entity.iddate|date('Y-m-d') %} 
+                            <tr>
+                                <td style="padding-left: 170px;width:170px;font-weight: bold;"><span>{{entity.idequipe1}}</span></td>
+                                <td style="width:120px;font-weight: bold;">
+                                    <a  href="#"><img class="image_equipe" src="{{asset('template/image/imageeq/')}}{{entity.idequipe1}}.png" ></a> 
+
+                                </td>
+                                <td style="width:120px;font-weight: bold;">
+                                    {{entity.iddate |date('d - m - Y')}}
+                                </td>
+                                   <td style="width:120px;font-weight: bold;">
+                                    {{ entity.iddate |date("g:ia")  }} 
+                                </td>
+                               
+
+                                
+                                <td style="font-weight: bold;">
+                                    <a  href="#"><img class="image_equipe" src="{{asset('template/image/imageeq/')}}{{entity.idequipe2}}.png" ></a> 
+
+                                </td>
+                                <td style="font-weight: bold;"><span>{{entity.idequipe2}}</span></td>
+                            </tr>
+                             {% endif %} 
+                        {% endfor%}
+                    </tbody>
+                </table>
 
 
 
-<div class="header">
-<div class="logo">
-  <img src="{{asset('template/image/logo.png')}}" alt="logo" />
-</div>
-<div class="titre_header">
- Football Soccer
-</div>
-</div>
-<div class="dim">
-<div class="nav">
+            </aside>
+        </div>
 
-<ul>
+                    
+                    
+                     <div id="content_cup">
+            <aside class="aside_tab_result" style="overflow:auto;overflow-x: hidden;">
+                <div class="titre_tab_player">Match of Cup</div>
 
-  <li id="home" action="onClick()"><a href="#" >Home</a></li>
-  <li id="team"><a href="#">Teams</a></li>
-  <li id="player"><a href="#">Players</a></li>
-  <li id="comp"><a href="#">Competition</a></li>
-  <li id="about"><a href="#">About</a></li>
+
+                <table rules="rows" style="width:1127px;">
+                    <thead>
+
+                    </thead>
+                    <tbody>
+                       {% for entity in parties  %}
+                            {% if entity.idcompetition == "Cup" %} 
+                            <tr>
+                                <td style="padding-left: 170px;width:170px;font-weight: bold;"><span>{{entity.idequipe1}}</span></td>
+                                <td style="width:120px;font-weight: bold;">
+                                    <a  href="#"><img class="image_equipe" src="{{asset('template/image/imageeq/')}}{{entity.idequipe1}}.png" ></a> 
+
+                                </td>
+                                <td style="width:120px;font-weight: bold;">
+                                    {{ entity.iddate |date('d - m - Y') }} 
+                                </td>
+                                   <td style="width:120px;font-weight: bold;">
+                                    {{ entity.iddate |date("g:ia")  }} 
+                                </td>
+                             
+
+                                
+                                <td style="font-weight: bold;">
+                                    <a  href="#"><img class="image_equipe" src="{{asset('template/image/imageeq/')}}{{entity.idequipe2}}.png" ></a> 
+
+                                </td>
+                                <td style="font-weight: bold;"><span>{{entity.idequipe2}}</span></td>
+                            </tr>
+                              {% endif%}
+                        {% endfor%}
+                    </tbody>
+                </table>
+
+            </aside>
+        </div>
+
+         <div id="content_champ">
+            <aside class="aside_tab_result" style="overflow:auto;overflow-x: hidden;">
+                <div class="titre_tab_player">Match of Championship</div>
+
+
+                <table rules="rows" style="width:1127px;">
+                    <thead>
+
+                    </thead>
+                    <tbody>
+                       {% for entity in parties  %}
+                           
+                           {% if entity.idcompetition == "Championship" %} 
+                            <tr>
+                                <td style="padding-left: 170px;width:170px;font-weight: bold;"><span>{{entity.idequipe1}}</span></td>
+                                <td style="width:120px;font-weight: bold;">
+                                    <a  href="#"><img class="image_equipe" src="{{asset('template/image/imageeq/')}}{{entity.idequipe1}}.png" ></a> 
+
+                                </td>
+                                <td style="width:120px;font-weight: bold;">
+                                    {{ entity.iddate |date('d - m - Y') }}
+                                </td>
+                                   <td style="width:120px;font-weight: bold;">
+                                    {{ entity.iddate |date("g:ia")  }} 
+                                </td>
+                               
+
+                                
+                                <td style="font-weight: bold;">
+                                    <a  href="#"><img class="image_equipe" src="{{asset('template/image/imageeq/')}}{{entity.idequipe2}}.png" ></a> 
+
+                                </td>
+                                <td style="font-weight: bold;"><span>{{entity.idequipe2}}</span></td>
+                            </tr>
+                           {% endif %} 
+                        {% endfor%}
+                    </tbody>
+                </table>
+
+            </aside>
+        </div>
+
+        <div id="content_body">
+            <div class="aside-slide">
+                <div class="div-results">
+                    <aside class="asideResults">
+                        <div class="titre">Results</div>
+                        <center>
+                            <TABLE  rules="rows"  style="width:251px;">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                    </tr>
+                                </thead> 		
+                                <tbody>
+                                    {% set compteur = 0%}
+                                    {% for entity in resultats  %}
+                                        {%if  (compteur < 3) %}
+
+                                            <tr class="row_match">
+                                                <td>
+                                                    <a  href="#"><img class="image_equipe" src="{{asset('template/image/imageeq/')}}{{entity.idequipe1}}.png" ></a> 
+                                                </td>
+                                                <td>
+                                        <center>
+
+
+                                           
+                                            
+                                            <br>
+                                            <span style="font-weight: bold;font-size: larger">{{ entity.buteq1 }}&nbsp; - &nbsp;{{ entity.buteq2 }}</span>
+                                            <br>
+                                            <br>
+                                              <span style="font-weight: bold;">  {{ entity.idequipe1 }}&nbsp; VS &nbsp;{{ entity.idequipe2 }}</span>	
+                                            
+                                        </center>
+                                        </td>
+                                        <td>
+                                            <a  href="#"><img class="image_equipe" src="{{asset('template/image/imageeq/')}}{{entity.idequipe2}}.png" ></a>
+                                        </td>
+
+                                        </tr>	
+                                    {% endif  %}
+                                    {% set compteur =compteur +1%}
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </center>
+                         <div class="lien_match">
+                             <button class="button_lien"><a id="lienresult" style="color:#ffffff;text-decoration:none; " class="result_lien" href="#" >View full table</a></button>
+                        </div>
+                                   
+                    </aside>
+                               
+                </div>
+                <div class="slide">
+                    <img class="mySlides" src="{{asset('template/image/img1.jpg')}}" >
+                    <img class="mySlides" src="{{asset('template/image/img2.jpg')}}" >
+                    <img class="mySlides" src="{{asset('template/image/img3.jpg')}}" >
+                </div>
+                <div class="div-match">
+                    <aside class="asideMatch">
+                        <div class="titre">Match</div>
+                        <center>
+                            <TABLE  rules="rows"  style="width:251px;">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                    </tr>
+                                </thead> 		
+                                <tbody>
+                                    {% set compteur = 0%}
+                                    {% for entity in parties  %}
+                                        {%if  (compteur < 3) %}
+                                            <tr class="row_match">
+                                                <td>
+                                                    <a  href="#"><img class="image_equipe" src="{{asset('template/image/imageeq/')}}{{entity.idequipe1}}.png" ></a> 
+                                                </td>
+                                                <td>
+                                        <center>
+                                            <br>
+
+                                            <span style="font-weight: bold;font-size: larger">{{ entity.iddate |date("m/d/Y")  }}</span> 
+
+
+                                            <br>
+
+                                                <span style="font-weight: bold;font-size: larger"> {{ entity.iddate |date("g:ia")  }}  </span>
+
+                                            
+
+                                                <br>
+                                                <span style="font-weight: bold;"> {{entity.idequipe1}} vs  {{entity.idequipe2}}	</span>
+                                            
+                                        </center>
+                                        </td>
+                                        <td>
+                                            <a  href="#"><img class="image_equipe" src="{{asset('template/image/imageeq/')}}{{entity.idequipe2}}.png" ></a>
+                                        </td>
+                                        </tr>
+                                    {% endif  %}
+                                    {% set compteur =compteur +1%}
+
+                                {% endfor %}
+
+
+                                </tbody>
+                            </table>
+                        </center>
+                         <div class="lien_match">
+                             <button class="button_lien"><a id="lienmatch" style="color:#ffffff;text-decoration:none; " class="result_lien" href="#" >View full table</a></button>
+                        </div>
+                                
+                    </aside>
+                </div>
+            </div>
+            <script>
+                var myIndex = 0;
+                carousel();
+
+                function carousel() {
+                    var i;
+                    var x = document.getElementsByClassName("mySlides");
+                    for (i = 0; i < x.length; i++) {
+                        x[i].style.display = "none";
+                    }
+                    myIndex++;
+                    if (myIndex > x.length) {
+                        myIndex = 1
+                    }
+                    x[myIndex - 1].style.display = "block";
+                    setTimeout(carousel, 4000); // Change image every 2 seconds
+                }
+            </script>
+
+            <div class="div-classement">
+                <aside class="asideClassement">
+                    <div class="titre_classement">Standing</div>
+                    <table rules="rows" style="width:700px;">
+                        <thead>
+                            <tr>
+                                <td style="width:70px;padding-left:15px;font-weight: bold;">Position</td>
+                                <td style="width:70px;font-weight: bold;">Team</td>
+                                <td style="font-weight: bold;">Name</td>
+                                <td style="font-weight: bold;">Points</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% set compteur = 1%}
+                            {% for entity in equipe  %}
+                                {%if  (compteur < 7) %}
+                                    <tr>
+                                        <td style="width:70px;padding-left:15px">{{compteur}}</td>
+                                        <td> <img class="image_equipe" src="{{asset('template/image/imageequipe/')}}{{entity.logo}}.png" > </td>
+                                        <td><span>{{entity.designation}}</span></td>
+                                        <td>{{(entity.g)*3+(entity.n)*1}}</td>
+                                    </tr>
+                                {% endif  %}
+                                {% set compteur =compteur +1%}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                        
+                   <div class="lien_classement">
+                             <button class="button_lien"><a id="lienstanding" style="color:#ffffff;text-decoration:none; " class="result_lien" href="#" >View full table</a></button>
+                        </div>
+                        
+                </aside>
+            </div>
+            <div class="div_Player">
+                <aside class="asidePlayer">
+                    <div class="titre_Player">Best Players</div>
+
+                    <table rules="all"  >
+                        <tbody>
+            
+           {% for row in players|batch(3, '')   %}
+  
+    
+   <tr >
+        {% for entity in row %}
+        
+                                <td style="width:150px;">
+                                     <center>
+                                     <img class="image_BestPlayer" src="{{asset('template/image/imagejoueur/')}}{{entity.image}}">
+                                     <p style="font-size: 11px;font-family: sans-serif;font-weight: bold;">{{entity.prenom}}  {{entity.nom}}</p>
+                                     </center>
+                                </td>
+        {% endfor %}
+    </tr>
+    
  
-</ul>
+{% endfor %}
 
-</div>
-<div class="aside-slide">
-<div class="div-results">
-<aside class="asideResults">
-<div class="titre">Results</div>
-<center>
-<TABLE  rules="rows"  style="width:251px;">
-			<thead>
-			<tr>
-				<th></th>
-			</tr>
-			</thead> 		
-			<tbody>
-								
-				<tr class="row_match" >
-						<td>
-							<a  href="#"><img class="image_equipe" src="{{asset('http://demo.themeboy.com/football-club-soccer/wp-content/uploads/sites/34/kangaroos-124x128.png')}}" ></a> 
-						</td>
-						<td>
-							<center>
-							<time  datetime="2016-06-02 16:30:00">
-								June 2, 2016
-							</time>
-						
-							<h3>
-							
-								<span>1-1</span>
-															
-							</h3>
-						
-							<h4>
-								Kangaroos VS Bulls	
-							</h4>
-							</center>
-						</td>
-						<td>
-							<a  href="#"><img class="image_equipe" src="{{asset('http://demo.themeboy.com/football-club-soccer/wp-content/uploads/sites/34/bulls-98x128.png')}}" ></a>
-						</td>
-				</tr>
-				
-				<tr class="row_match">
-						<td>
-							<a  href="#"><img class="image_equipe" src="{{asset('http://demo.themeboy.com/football-club-soccer/wp-content/uploads/sites/34/kangaroos-124x128.png')}}" ></a> 
-						</td>
-						<td>
-						<center>
-							<time  datetime="2016-06-02 16:30:00">
-								June 2, 2016
-							</time>
-						
-							<h3>
-								
-								<span>1-1</span>
-											
-							</h3>
-						
-							<h4>
-								Kangaroos v Bulls	
-							</h4>
-							</center>	
-						</td>
-						<td>
-							<a  href="#"><img class="image_equipe" src="{{asset('http://demo.themeboy.com/football-club-soccer/wp-content/uploads/sites/34/bulls-98x128.png')}}" ></a>
-						</td>
-				</tr>
-				
-				<tr class="row_match">
-						<td>
-							<a  href="#"><img class="image_equipe" src="{{asset('http://demo.themeboy.com/football-club-soccer/wp-content/uploads/sites/34/kangaroos-124x128.png')}}" ></a> 
-						</td>
-						<td>
-							<center>
-							<time  datetime="2016-06-02 16:30:00">
-								June 2, 2016
-							</time>
-						
-							<h3>
-								
-								<span>1-1</span>
-												
-							</h3>
-						
-							<h4>
-								Kangaroos v Bulls	
-							</h4>
-							</center>
-						</td>
-						<td>
-							<a  href="#"><img class="image_equipe" src="{{asset('http://demo.themeboy.com/football-club-soccer/wp-content/uploads/sites/34/bulls-98x128.png')}}" ></a>
-						</td>
-						
-				</tr>		
-										
-			</tbody>
-		</table>
-</center>
-		<div class="lien_match">
-			<a href="#">View full table</a>
-		</div>
-</aside>
-</div>
-<div class="slide">
-  <img class="mySlides" src="{{asset('template/image/img1.jpg')}}" >
-  <img class="mySlides" src="{{asset('template/image/img2.jpg')}}" >
-  <img class="mySlides" src="{{asset('template/image/img3.jpg')}}" >
-</div>
-<div class="div-match">
-<aside class="asideMatch">
-<div class="titre">Match</div>
-<center>
-<TABLE  rules="rows"  style="width:251px;">
-			<thead>
-			<tr>
-				<th></th>
-			</tr>
-			</thead> 		
-			<tbody>
-								
-				<tr class="row_match">
-						<td>
-							<a  href="#"><img class="image_equipe" src="{{asset('http://demo.themeboy.com/football-club-soccer/wp-content/uploads/sites/34/kangaroos-124x128.png')}}" ></a> 
-						</td>
-						<td>
-							<center>
-							<time  datetime="2016-06-02 16:30:00">
-								June 2, 2016
-							</time>
-						
-							<h5>
-								
-								<span >4:30 pm</span>
-															
-							</h5>
-						
-							<h4>
-								Kangaroos v Bulls	
-							</h4>
-							</center>
-						</td>
-						<td>
-							<a  href="#"><img class="image_equipe" src="{{asset('http://demo.themeboy.com/football-club-soccer/wp-content/uploads/sites/34/bulls-98x128.png')}}" ></a>
-						</td>
-				</tr>
-				
-				<tr class="row_match">
-						<td>
-							<a  href="#"><img class="image_equipe" src="{{asset('http://demo.themeboy.com/football-club-soccer/wp-content/uploads/sites/34/kangaroos-124x128.png')}}" ></a> 
-						</td>
-						<td>
-						<center>
-							<time  datetime="2016-06-02 16:30:00">
-								June 2, 2016
-							</time>
-						
-							<h5>
-								
-								<span >4:30 pm</span>
-															
-							</h5>
-						
-							<h4>
-								Kangaroos v Bulls	
-							</h4>
-							</center>
-						</td>
-						<td>
-							<a  href="#"><img class="image_equipe" src="{{asset('http://demo.themeboy.com/football-club-soccer/wp-content/uploads/sites/34/bulls-98x128.png')}}" ></a>
-						</td>
-				</tr>
-				
-				<tr class="row_match">
-						<td>
-							<a  href="#"><img class="image_equipe" src="{{asset('http://demo.themeboy.com/football-club-soccer/wp-content/uploads/sites/34/kangaroos-124x128.png')}}" ></a> 
-						</td>
-						<td>
-						<center>
-							<time  datetime="2016-06-02 16:30:00">
-								June 2, 2016
-							</time>
-						
-							<h5>
-								
-								<span >4:30 pm</span>
-															
-							</h5>
-						
-							<h4>
-								Kangaroos v Bulls	
-							</h4>
-							</center>
-						</td>
-						<td>
-							<a  href="#"><img class="image_equipe" src="{{asset('http://demo.themeboy.com/football-club-soccer/wp-content/uploads/sites/34/bulls-98x128.png')}}" ></a>
-						</td>
-						
-				</tr>		
-										
-			</tbody>
-		</table>
-		</center>
-<div class="lien_match">
-<a href="#">View full table</a>
-</div>
-</aside>
-</div>
-</div>
-<script>
-var myIndex = 0;
-carousel();
 
-function carousel() {
-    var i;
-    var x = document.getElementsByClassName("mySlides");
-    for (i = 0; i < x.length; i++) {
-       x[i].style.display = "none";  
-    }
-    myIndex++;
-    if (myIndex > x.length) {myIndex = 1}    
-    x[myIndex-1].style.display = "block";  
-    setTimeout(carousel, 4000); // Change image every 2 seconds
-}
-</script>
+                        </tbody>
+                    </table>
+                </aside>
+            </div>
+            <div class="div-video">
+                <aside class="asidevideo">
+                    <center>
+                        <div class="titre_video">Video</div>
+                        <iframe width="1121" height="374"  src="https://www.youtube.com/embed/uItfey7mQEQ" frameborder="0" allowfullscreen></iframe> 
+                    </center>
+                </aside>
+            </div>
+        </div>
+        <footer>
+            <aside class="aside_footer">
+               
+                <div class="subscribe">
+                 <form action="">
+                     <p style="color: #EEEFEF"><b>Newsletter</b></>
+                     <hr>
+                     <input class="input"type="text"  placeholder="Leave your email adress here" id="txt">
+                     <br>
+                     <input class="button_news" type="submit" value="Send" id="btnNews">
+                 </form>
+                </div>
 
-<div class="div-classement">
-<aside class="asideClassement">
-<div class="titre_classement">Classement</div>
-<table rules="rows" style="width:700px;">
-	<thead>
-		<tr>
-			<td style="width:70px;padding-left:15px;font-weight: bold;">Position</td>
-			<td style="width:70px;font-weight: bold;">Team</td>
-			<td style="font-weight: bold;">Name</td>
-			<td style="font-weight: bold;">Points</td>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td style="width:70px;padding-left:15px">1</td>
-			<td><img class="image_equipe" src="{{asset('http://demo.themeboy.com/football-club-soccer/wp-content/uploads/sites/34/budgies-113x128.png')}}" ></td>
-			<td><span>Budgies</span></td>
-			<td>20</td>
-		</tr>
-		<tr>
-			<td style="width:70px;padding-left:15px">2</td>
-			<td><img class="image_equipe" src="{{asset('http://demo.themeboy.com/football-club-soccer/wp-content/uploads/sites/34/budgies-113x128.png')}}" ></td>
-			<td><span>Budgies</span></td>
-			<td>20</td>
-		</tr>
-		<tr>
-			<td style="width:70px;padding-left:15px">3</td>
-			<td><img class="image_equipe" src="{{asset('http://demo.themeboy.com/football-club-soccer/wp-content/uploads/sites/34/budgies-113x128.png')}}" ></td>
-			<td><span>Budgies</span></td>
-			<td>20</td>
-		</tr>
-		<tr>
-			<td style="width:70px;padding-left:15px">4</td>
-			<td><img class="image_equipe" src="{{asset('http://demo.themeboy.com/football-club-soccer/wp-content/uploads/sites/34/budgies-113x128.png')}}" ></td>
-			<td><span>Budgies</span></td>
-			<td>20</td>
-		</tr>
-		<tr>
-			<td style="width:70px;padding-left:15px">5</td>
-			<td><img class="image_equipe" src="{{asset('http://demo.themeboy.com/football-club-soccer/wp-content/uploads/sites/34/budgies-113x128.png')}}" ></td>
-			<td><span>Budgies</span></td>
-			<td>20</td>
-		</tr>
-		<tr>
-			<td style="width:70px;padding-left:15px">6</td>
-			<td><img class="image_equipe" src="{{asset('http://demo.themeboy.com/football-club-soccer/wp-content/uploads/sites/34/budgies-113x128.png')}}" ></td>
-			<td><span>Budgies</span></td>
-			<td>20</td>
-		</tr>
-	</tbody>
-</table>
-<div class="lien_classement">
-<a href="#">View full table</a>
-</div>
-</aside>
-</div>
-<div class="div_calendrier">
-<aside class="asideCalendrier">
-<div class="titre_calendrier">Calendrier</div>
-		<div id=NavBar style="position:relative;width:286px;top:15px;padding-left:65px;" align="left">
-			<form name="when"><table>
-				<tr>
-					<td><input type="button" class="button" value="<-- Last" onClick="Skip('-')"></td>
-				<td> </td>
-				<td>
-					<select name="month" onChange="On_Month()">
+                
+                <div class="liens">
+                    <p style="color: #EEEFEF"><b>Social Networks</b></>
+                     <hr>
+                    <a class="button_footer" href="https://www.facebook.com">
+                        <img src="{{asset('template/image/fb2.png')}}"/>
+                    </a>
+                    &nbsp;
+                 
+                    <a class="button_footer" href="https://twitter.com">
+                    <img src="{{asset('template/image/twitter.png')}}"/>
+                    </a>
+                     &nbsp;
+                   
+                    <a class="button_footer" href="https://plus.google.com" >
+                        <img src="{{asset('template/image/google.png')}}"/>
+                    </a>
+             
+                </div>
+                <div class="contact">
+                 
+                    <p style="color: #EEEFEF"><b>Contact</b></p>
+                     <hr>
+                     <p style="color: #EEEFEF">
+                       Email : Glid2@iit.ens.tn<br>
+                       Tel :+216 24 101 240 <br>
+                       Adress :<br>
+                       Street of Mharza
+                       Sfax
+                       Tunisia
+                     </p>
+                 
+                </div>
+                    
+                <div class="sous_footer">
+                    2016 Football Soccer
+                </div>
+                <div class="sous_footer2">
+                    Designed by Glid II
+                </div>
+            </aside>
+        </footer>
+    </div>
+    <div  style="position: fixed; bottom: 30px; right: 20px; opacity: 8; cursor: pointer;">
+        <a  href="#">
+            <img style="width: 40px;height: 40px;" src="{{asset('template/image/fhaut.png')}}" >
+        </a>
+    </div>
 
-					<script language="JavaScript1.2">
-					if (ie4||ns6){
-							for (j=0;j<Month_Label.length;j++) {
-							document.writeln('<option value=' + j + '>' + Month_Label[j]);
-							}
-					}
-					</script>
-
-					</select>
-				</td>
-				<td><input type="text" name="year" size=4 maxlength=4 onKeyPress="return Check_Nums()" onKeyUp="On_Year()"></td>
-				<td> </td>
-				<td><input type="button" class="button" value="Next -->" onClick="Skip('+')"></td>
-				</tr></table></form></div>
-				<div id=Calendar style="position:relative;width:400px;top:-2px;" align="left"></div>
-</aside>
-</div>
-<div class="div_player">
-<aside class="asidePlayer">
-<div class="titre_Player">Best Players</div>
-	<table rules="all" style="width:1125px;">
-	<tbody>
-		<tr style="height:185px;">
-			<td>
-				<img class="image_player" src="{{asset('http://demo.themeboy.com/football-club-soccer/wp-content/uploads/sites/34/budgies-113x128.png')}}">
-				<p class="nomJoueur">Ali maaloul</p>
-			</td>
-			<td>
-				<img class="image_player" src="{{asset('http://demo.themeboy.com/football-club-soccer/wp-content/uploads/sites/34/budgies-113x128.png')}}">
-				<p class="nomJoueur">Ali maaloul</p>
-			</td>
-			<td>
-				<img class="image_player" src="{{asset('http://demo.themeboy.com/football-club-soccer/wp-content/uploads/sites/34/budgies-113x128.png')}}">
-				<p class="nomJoueur">Ali maaloul</p>
-			</td>
-			<td>
-				<img class="image_player" src="{{asset('http://demo.themeboy.com/football-club-soccer/wp-content/uploads/sites/34/budgies-113x128.png')}}">
-				<p class="nomJoueur">Ali maaloul</p>
-			</td>
-			<td>
-				<img class="image_player" src="{{asset('http://demo.themeboy.com/football-club-soccer/wp-content/uploads/sites/34/budgies-113x128.png')}}">
-				<p class="nomJoueur">Ali maaloul</p>
-			</td>
-			
-		</tr>
-		<tr style="height:187px;">
-			<td>
-				<img class="image_player" src="{{asset('http://demo.themeboy.com/football-club-soccer/wp-content/uploads/sites/34/budgies-113x128.png')}}">
-				<p class="nomJoueur">Ali maaloul</p>
-			</td>
-			<td>
-				<img class="image_player" src="{{asset('http://demo.themeboy.com/football-club-soccer/wp-content/uploads/sites/34/budgies-113x128.png')}}">
-				<p class="nomJoueur">Ali maaloul</p>
-			</td>
-			<td>
-				<img class="image_player" src="{{asset('http://demo.themeboy.com/football-club-soccer/wp-content/uploads/sites/34/budgies-113x128.png')}}">
-				<p class="nomJoueur">Ali maaloul</p>
-			</td>
-			<td>
-				<img class="image_player" src="{{asset('http://demo.themeboy.com/football-club-soccer/wp-content/uploads/sites/34/budgies-113x128.png')}}">
-				<p class="nomJoueur">Ali maaloul</p>
-			</td>
-			<td>
-				<img class="image_player" src="{{asset('http://demo.themeboy.com/football-club-soccer/wp-content/uploads/sites/34/budgies-113x128.png')}}">
-				<p class="nomJoueur">Ali maaloul</p>
-			</td>
-			
-		</tr>
-	
-		
-		
-	</tbody>
-</table>
-</aside>
-</div>
-
-<aside class="aside_footer">
-	
-	<div class="sous_footer">
-		© 2016 Football Soccer
-	</div>
-	<div class="sous_footer2">
-		Designed by Glid II
-	</div>
-</aside>
-
-</div>
-<div title="Haut de page" style="position: fixed; bottom: 30px; right: 20px; opacity: 8; cursor: pointer;">
-<a class="haut" href="#">
-haut
-</a>
-</div>
- 
- {% endblock %}
+{% endblock %}

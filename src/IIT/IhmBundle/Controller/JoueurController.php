@@ -244,17 +244,10 @@ class JoueurController extends Controller
             ->getForm()
         ;
     }
-           /**
-     * Lists all Joueur entities.
-     *
-     * @Route("/index", name="home_root")
-     * @Method("GET")
-     * @Template("IITIhmBundle:Home:home.html.twig")
-     */
     
         public function homeAction()
     {
-       
+       $id=3;
         $em = $this->getDoctrine()->getManager();
 
         $joueurs = $em->getRepository('IITIhmBundle:Joueur')->findAll();
@@ -262,10 +255,24 @@ class JoueurController extends Controller
         $resultat = $em->getRepository('IITIhmBundle:Resultat')->findAll();
         $partie = $em->getRepository('IITIhmBundle:Partie')->findAll();
          $calandrier = $em->getRepository('IITIhmBundle:Calendrier')->findAll();
-        return array(
+           $equipe = $em->getRepository('IITIhmBundle:Equipe')->findAll();
+              $players = $em->getRepository("IITIhmBundle:Joueur")
+                ->showPlayers($id);
+           return($this->render("IITIhmBundle:Home:home.html.twig",array(
             'joueurs' => $joueurs,'competitions' => $competition,'resultats' => $resultat,
-            'parties' => $partie,'calendrier'=>$calandrier
-        );
-      
+            'parties' => $partie,'calendrier'=>$calandrier,'equipe'=>$equipe,"players" => $players
+        )));
+        
+    }
+    
+    
+       public function getPlayerByTeamAction($id) {
+        $em = $this->getDoctrine()->getManager();
+ 
+        $players = $em->getRepository("IITIhmBundle:Joueur")
+                ->showPlayers($id);
+               
+        return($this->render("IITIhmBundle:Home:teams.html.twig", array("players" => $players)));
     }
 }
+

@@ -94,6 +94,8 @@
   'IITIhmBundle:Heure:index.html.twig' => '/var/www/html/IhmProject/src/IIT/IhmBundle/Resources/views/Heure/index.html.twig',
   'IITIhmBundle:Heure:edit.html.twig' => '/var/www/html/IhmProject/src/IIT/IhmBundle/Resources/views/Heure/edit.html.twig',
   'IITIhmBundle:Heure:new.html.twig' => '/var/www/html/IhmProject/src/IIT/IhmBundle/Resources/views/Heure/new.html.twig',
+  'IITIhmBundle:Home:playerList.html.twig' => '/var/www/html/IhmProject/src/IIT/IhmBundle/Resources/views/Home/playerList.html.twig',
+  'IITIhmBundle:Home:teams.html.twig' => '/var/www/html/IhmProject/src/IIT/IhmBundle/Resources/views/Home/teams.html.twig',
   'IITIhmBundle:Home:home.html.twig' => '/var/www/html/IhmProject/src/IIT/IhmBundle/Resources/views/Home/home.html.twig',
   'IITIhmBundle:Competition:show.html.twig' => '/var/www/html/IhmProject/src/IIT/IhmBundle/Resources/views/Competition/show.html.twig',
   'IITIhmBundle:Competition:index.html.twig' => '/var/www/html/IhmProject/src/IIT/IhmBundle/Resources/views/Competition/index.html.twig',
@@ -156,5 +158,4 @@
   'SensioDistributionBundle:Configurator:final.html.twig' => '/var/www/html/IhmProject/vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle/Resources/views/Configurator/final.html.twig',
   'SensioDistributionBundle:Configurator:steps.html.twig' => '/var/www/html/IhmProject/vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle/Resources/views/Configurator/steps.html.twig',
   '::base.html.twig' => '/var/www/html/IhmProject/app/Resources/views/base.html.twig',
-  ':default:index.html.twig' => '/var/www/html/IhmProject/app/Resources/views/default/index.html.twig',
 );

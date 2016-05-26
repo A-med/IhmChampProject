@@ -9,3 +9,11 @@ app:
 home_root:
     pattern : /index
     defaults: { _controller: IITIhmBundle:Joueur:home} 
+    
+    
+    
+players_team:
+    pattern : /index/{id}
+    defaults: { _controller: IITIhmBundle:Joueur:getPlayerByTeam}
+    
+   

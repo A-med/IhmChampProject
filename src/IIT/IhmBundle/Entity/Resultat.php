@@ -79,7 +79,8 @@ class Resultat
      */
     private $idequipe2;
 
-
+   private $logo1;
+   private $logo2;
 
     /**
      * Set buteq1
@@ -251,4 +252,23 @@ class Resultat
     {
         return $this->idpartie;
     }
+    
+    function getLogo1() {
+        return $this->idequipe1;
+    }
+
+    function getLogo2() {
+        return $this->logo2;
+    }
+
+    function setLogo1($logo1) {
+        $this->logo1 = $logo1;
+    }
+
+    function setLogo2($logo2) {
+        $this->logo2 = $logo2;
+    }
+
+
+    
 }

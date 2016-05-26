@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="date", indexes={@ORM\Index(name="idCalendrier", columns={"idCalendrier"})})
  * @ORM\Entity
  */
-class Date
+class Date 
 {
     /**
      * @var integer
@@ -38,7 +38,7 @@ class Date
      */
     private $idcalendrier;
 
-
+ 
 
     /**
      * Set date
@@ -95,4 +95,13 @@ class Date
     {
         return $this->idcalendrier;
     }
+ 
+    
+    public function __toString() {
+        return $this->date->format('d-m-Y');
+    }
+
+   
+   
+    
 }

@@ -1,0 +1,52 @@
+ 
+<div class="divListPlayer" id="players">
+
+             <aside class="asideListPlayer">
+                    <div class="titre_list_player">List of Players</div>
+                    <table rules="all" style="width:552px; " >
+                        <tbody>
+            {% for row in players|batch(3, 'No item') %}
+                            <tr style="height:190px;">
+                       {% for entity in row    %}
+                            <div  id="popup{{entity.id}}" class="overlay">
+                                <div class="popup">
+                                    <center><img class="image_playerListPlayer" style="padding-left:10px;" src="{{asset('template/image/imagejoueur/')}}{{entity.image}}"></center>
+
+                                    <h2><center>{{entity.nom ~"  "~entity.prenom}}</center></h2>
+                                    <a class="close" href="#">&times;</a>
+                                    <div class="content">
+                                        <center><b>Nationality :</b>&nbsp;{{entity.nationalite}}</center>
+                                        <br>
+                                        <center><b>Day of birth :</b>&nbsp;{{entity.datenaiss |date("d/m/Y")}}</center>
+                                        <br>
+                                        <center><b>Height :&nbsp;</b>{{entity.taille~" "~"cm"}}</center>
+                                        <br>
+                                        <center><b> Weight :&nbsp;</b>{{entity.poids~" "~"kg"}}</center>
+                                    </div>
+                                </div>
+                            </div>
+                                
+                                    <td style="width:100px;">
+                                    
+                                        <img class="image_playerListPlayer" src="{{asset('template/image/imagejoueur/')}}{{entity.image}}">
+                                    <center><p  style="font-size: 15px;font-family: inherit;font-weight: bold;" >  {{ entity.nom ~" "~entity.prenom}} </p> </center>
+                                    <center><a  href="#popup{{entity.id}}"><img src="{{asset('template/image/info.png')}}" ></a></center>
+                                    </td>
+
+                                 {% endfor %}
+
+                                     
+                                 </tr>
+  
+                               
+
+                        {% endfor %}
+
+
+
+
+                        </tbody>
+                    </table>
+                </aside>
+            </div>
+                        

@@ -1,14 +1,14 @@
 <?php
 
 namespace IIT\IhmBundle\Entity;
-
+use IIT\IhmBundle\Entity\EquipeRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Equipe
- *
+ * @ORM\Entity(repositoryClass="IIT\IhmBundle\Entity\EquipeRepository")
  * @ORM\Table(name="equipe")
- * @ORM\Entity
+ *  
  */
 class Equipe
 {
@@ -42,7 +42,40 @@ class Equipe
      */
     private $typeequipe;
 
+     /**
+     * @var integer
+     *
+     * @ORM\Column(name="j", type="integer", nullable=false)
+     */
+    private $j;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="g", type="integer", nullable=false)
+     */
+    private $g;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="n", type="integer", nullable=false)
+     */
+    private $n;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="p", type="integer", nullable=false)
+     */
+    private $p;
+    
+       /**
+     * @var string
+     *
+     * @ORM\Column(name="logo", type="string", length=100, nullable=false)
+     */
+    private $logo;
 
     /**
      * Set designation
@@ -112,6 +145,104 @@ class Equipe
     {
         return $this->typeequipe;
     }
+    
+    
+    /**
+     * Get j
+     *
+     * @return integer 
+     */
+    function getJ() {
+        return $this->j;
+    }
+
+    /**
+     * Get g
+     *
+     * @return integer 
+     */
+    function getG() {
+        return $this->g;
+    }
+
+    /**
+     * Get n
+     *
+     * @return integer 
+     */
+    function getN() {
+        return $this->n;
+    }
+
+    /**
+     * Get p
+     *
+     * @return integer 
+     */
+    function getP() {
+        return $this->p;
+    }
+
+    /**
+     * Get logo
+     *
+     * @return string 
+     */
+    function getLogo() {
+        return $this->logo;
+    }
+
+     /**
+     * Set j
+     *
+     * @param integer $j
+     * @return Equipe
+     */
+    function setJ($j) {
+        $this->j = $j;
+    }
+
+     /**
+     * Set g
+     *
+     * @param integer $g
+     * @return Equipe
+     */
+    function setG($g) {
+        $this->g = $g;
+    }
+
+     /**
+     * Set n
+     *
+     * @param integer $n
+     * @return Equipe
+     */
+    function setN($n) {
+        $this->n = $n;
+    }
+
+     /**
+     * Set p
+     *
+     * @param integer $p
+     * @return Equipe
+     */
+    function setP($p) {
+        $this->p = $p;
+    }
+
+    /**
+     * Set logo
+     *
+     * @param string $logo
+     * @return Equipe
+     */
+    function setLogo($logo) {
+        $this->logo = $logo;
+    }
+
+        
 
     /**
      * Get id
@@ -122,4 +253,9 @@ class Equipe
     {
         return $this->id;
     }
+    public function __toString() {
+        return $this->designation;
+    }
+
+    
 }

@@ -1,13 +1,13 @@
 <?php
+
+
 namespace IIT\IhmBundle\Entity;
-
-
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Partie
  *
- * @ORM\Table(name="partie", indexes={@ORM\Index(name="idEquipe", columns={"idEquipe"}), @ORM\Index(name="idStade", columns={"idStade"}), @ORM\Index(name="idCompetition", columns={"idCompetition"}), @ORM\Index(name="idDate", columns={"idDate"})})
+ * @ORM\Table(name="partie", indexes={@ORM\Index(name="idStade", columns={"idStade"}), @ORM\Index(name="idCompetition", columns={"idCompetition"}), @ORM\Index(name="idDate", columns={"idDate"}), @ORM\Index(name="idEquipe2", columns={"idEquipe2"}), @ORM\Index(name="idEquipe1", columns={"idEquipe1"})})
  * @ORM\Entity
  */
 class Partie
@@ -26,10 +26,10 @@ class Partie
      *
      * @ORM\ManyToOne(targetEntity="Equipe")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idEquipe", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="idEquipe2", referencedColumnName="id")
      * })
      */
-    private $idequipe;
+    private $idequipe2;
 
     /**
      * @var \Stade
@@ -61,7 +61,18 @@ class Partie
      */
     private $iddate;
 
+    /**
+     * @var \Equipe
+     *
+     * @ORM\ManyToOne(targetEntity="Equipe")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idEquipe1", referencedColumnName="id")
+     * })
+     */
+    private $idequipe1;
 
+    
+    
 
     /**
      * Get id
@@ -72,7 +83,9 @@ class Partie
     {
         return $this->id;
     }
+     
 
+private $descr ;
     /**
      * Set iddate
      *
@@ -145,12 +158,12 @@ class Partie
     /**
      * Set idequipe
      *
-     * @param \IIT\IhmBundle\Entity\Equipe $idequipe
+     * @param \IIT\IhmBundle\Entity\Equipe $idequipe1
      * @return Partie
      */
-    public function setIdequipe(\IIT\IhmBundle\Entity\Equipe $idequipe = null)
+    public function setIdequipe1(\IIT\IhmBundle\Entity\Equipe $idequipe1 = null)
     {
-        $this->idequipe = $idequipe;
+        $this->idequipe1 = $idequipe1;
 
         return $this;
     }
@@ -160,8 +173,35 @@ class Partie
      *
      * @return \IIT\IhmBundle\Entity\Equipe 
      */
-    public function getIdequipe()
+    public function getIdequipe1()
     {
-        return $this->idequipe;
+        return $this->idequipe1;
     }
+    
+    
+        /**
+     * Set idequipe
+     *
+     * @param \IIT\IhmBundle\Entity\Equipe $idequipe2
+     * @return Partie
+     */
+    public function setIdequipe2(\IIT\IhmBundle\Entity\Equipe $idequipe2 = null)
+    {
+        $this->idequipe2 = $idequipe2;
+
+        return $this;
+    }
+
+    /**
+     * Get idequipe
+     *
+     * @return \IIT\IhmBundle\Entity\Equipe 
+     */
+    public function getIdequipe2()
+    {
+        return $this->idequipe2;
+    }
+    
+   
+
 }

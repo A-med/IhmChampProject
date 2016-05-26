@@ -1,40 +1,290 @@
 <!DOCTYPE html>
 <html>
-  
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        
-        
-        {% block stylesheets %}
+
+    <meta charset="UTF-8" />
+    <title>{% block title %}Welcome!{% endblock %}</title>
+
+
+    {% block stylesheets %}
+
+        <link rel='stylesheet'  href="{{asset('template/style.css')}}" type='text/css'  />
+
+         
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+    <body  >
+    {% block body %}{% endblock %}
+</body>
+
+{% block javascripts %}
+{%block otherscripy %}{% endblock %}
+ 
+    <script src="{{ asset('http://code.jquery.com/jquery-1.7.2.js')}}"></script>
+    
+    <script>   
+        $(document).ready(function () {
+            
+            
+            
+            
+           $("#content_Standing").hide();
+                
+                 $("#content_body").show();
+                $("#content_results").hide();
+                $("#content_match").hide();
+                $("#content_cup").hide();
+                $("#content_champ").hide();
+                 $("#content_players").hide();
+              $('#home').addClass("active");
+            $("#standing").click(function () {
+                $('#home').removeClass("active");
+                $('#player').removeClass("active");
+                $('#results').removeClass("active");
+                 $('#match').removeClass("active");
+                 $('#cup').removeClass("active");
+                  $('#champ').removeClass("active");
+                  $('#competition').removeClass("active");
+                $('#standing').addClass("active");
+                $("#content_body").hide();
+                 $("#content_players").hide();
+                $("#content_results").hide();
+                $("#content_match").hide();
+                $("#content_cup").hide();
+                $("#content_champ").hide();
+                $("#content_Standing").show();
+
+            });
+
+            $("#home").click(function () {
+                $('#standing').removeClass("active");
+                $('#player').removeClass("active");
+                $('#results').removeClass("active");
+                  $('#match').removeClass("active");
+                   $('#cup').removeClass("active");
+                   $('#champ').removeClass("active");
+                   $('#competition').removeClass("active");
+                $('#home').addClass("active");
+                $("#content_Standing").hide();
+                $("#content_players").hide();
+                 $("#content_body").hide();
+                $("#content_results").hide();
+                $("#content_match").hide();
+                $("#content_cup").hide();
+                 $("#content_champ").hide();
+                $("#content_body").show();
+
+            });
+
+
+            $("#player").click(function () {
+                $('#standing').removeClass("active");
+                $('#home').removeClass("active");
+                $('#results').removeClass("active");
+                $('#match').removeClass("active");
+                $('#cup').removeClass("active");
+                 $('#champ').removeClass("active");
+                 $('#competition').removeClass("active");
+                $('#player').addClass("active");
+                
+                $("#content_Standing").hide();
+                $("#content_body").hide();
+                $("#content_results").hide();
+                $("#content_match").hide();
+                 $("#content_cup").hide();
+                  $("#content_champ").hide();
+                $("#content_players").show();
+
+            });
+            
+            
+                $("#results").click(function () {
+                $('#standing').removeClass("active");
+                $('#home').removeClass("active");
+                $('#player').removeClass("active");
+                 $('#cup').removeClass("active");
+                  $('#champ').removeClass("active");
+                  $('#competition').removeClass("active");
+             $('#match').removeClass("active");
+                $('#results').addClass("active");
+                $("#content_Standing").hide();
+                $("#content_body").hide();
+                $("#content_players").hide();
+                $("#content_match").hide();
+                $("#content_cup").hide();
+                 $("#content_champ").hide();
+                $("#content_results").show();
+
+            });
+              $("#btnNews").click(function () {
+                  var btnC = $(txt).val();
+    alert("Hi "+btnC+"  you will receive our newsletter as soon as possible !");    
+ 
+
+            });
+            
+                   $( "table tr [id^='trTeam']" ).click(function () {
+                  var btnC = $(txt).val();
+    alert("Hi "+btnC+"  you will receive our newsletter as soon as possible !");    
+ 
+
+            });
+            
+            $("#match").click(function () {
+                $('#standing').removeClass("active");
+                $('#home').removeClass("active");
+                $('#player').removeClass("active");
+                $('#results').removeClass("active");
+                $('#cup').removeClass("active");
+                 $('#champ').removeClass("active");
+                  $('#competition').removeClass("active");
+                $('#match').addClass("active");
+                $("#content_Standing").hide();
+                $("#content_body").hide();
+                $("#content_players").hide();
+                $("#content_cup").hide();
+                $("#content_results").hide();
+                 $("#content_champ").hide();
+                  $("#content_match").show();
+            });
+           
+             $("#cup").click(function () {
+                $('#standing').removeClass("active");
+                $('#home').removeClass("active");
+                $('#player').removeClass("active");
+                $('#results').removeClass("active");
+                $('#match').removeClass("active");
+                 $('#champ').removeClass("active");
+                $('#cup').addClass("active");
+                $('#competition').addClass("active");
+                $("#content_Standing").hide();
+                $("#content_body").hide();
+                $("#content_players").hide();
+                $("#content_match").hide();
+                $("#content_results").hide();
+                 $("#content_champ").hide();
+                  $("#content_cup").show();
+            });
+            
+             $("#champ").click(function () {
+                $('#standing').removeClass("active");
+                $('#home').removeClass("active");
+                $('#player').removeClass("active");
+                $('#results').removeClass("active");
+                $('#match').removeClass("active");
+                 $('#cup').removeClass("active");
+                $('#champ').addClass("active");
+                $('#competition').addClass("active");
+                $("#content_Standing").hide();
+                $("#content_body").hide();
+                $("#content_players").hide();
+                $("#content_match").hide();
+                $("#content_results").hide();
+                 $("#content_cup").hide();
+                  $("#content_champ").show();
+            });
+            $("#lienmatch").click(function () {
+                $('#standing').removeClass("active");
+                $('#home').removeClass("active");
+                $('#player').removeClass("active");
+                $('#results').removeClass("active");
+                $('#champ').removeClass("active");
+                 $('#cup').removeClass("active");
+                 $('#competition').removeClass("active");
+                 
+                $('#match').addClass("active");
+               
+                $("#content_Standing").hide();
+                $("#content_body").hide();
+                $("#content_players").hide();
+                $("#content_champ").hide();
+                $("#content_results").hide();
+                 $("#content_cup").hide();
+                  $("#content_match").show();
+            });
+            
+             $("#lienstanding").click(function () {
+                $('#match').removeClass("active");
+                $('#home').removeClass("active");
+                $('#player').removeClass("active");
+                $('#results').removeClass("active");
+                $('#champ').removeClass("active");
+                 $('#cup').removeClass("active");
+                 $('#competition').removeClass("active");
+                 
+                $('#standing').addClass("active");
+               
+                $("#content_match").hide();
+                $("#content_body").hide();
+                $("#content_players").hide();
+                $("#content_champ").hide();
+                $("#content_results").hide();
+                 $("#content_cup").hide();
+                  $("#content_Standing").show();
+            });
+            
+             $("#lienresult").click(function () {
+                $('#match').removeClass("active");
+                $('#home').removeClass("active");
+                $('#player').removeClass("active");
+                
+                $('#champ').removeClass("active");
+                 $('#cup').removeClass("active");
+                 $('#competition').removeClass("active");
+                 $('#standing').removeClass("active");
+                $('#results').addClass("active");
+               
+                $("#content_match").hide();
+                $("#content_body").hide();
+                $("#content_players").hide();
+                $("#content_champ").hide();
+                $("#content_Standing").hide();
+                 $("#content_cup").hide();
+                  $("#content_results").show();
+            });
+                   
+        });
      
-<link rel='stylesheet'  href="{{asset('template/style.css')}}" type='text/css'  />
-
-
-        {% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-   
- <body onLoad="Defaults()">
- {% block body %}{% endblock %}</body>
-        {% block javascripts %}
-            
-            
-            <script type="text/javascript" src="{{asset('template/calendrier.js')}}"></script>
-        
-            <script>
-var myIndex = 0;
-carousel();
-
-function carousel() {
-    var i;
-    var x = document.getElementsByClassName("mySlides");
-    for (i = 0; i < x.length; i++) {
-       x[i].style.display = "none";  
+    function goToUrl(id) {
+        //  alert(id);
+                         
+            var path="{{ path('players_team', { 'id':"PLACEHOLDER"  }) }}";
+     	 
+          
+    
+           var url =  path.replace("PLACEHOLDER", id);
+           
+          
+ 
+    $.ajax({url: url, success: function(result){
+        $("#players").replaceWith(result);
+    }});
+ 
     }
-    myIndex++;
-    if (myIndex > x.length) {myIndex = 1}    
-    x[myIndex-1].style.display = "block";  
-    setTimeout(carousel, 4000); // Change image every 2 seconds
-}
-</script>{% endblock %}
-    </body>
+     
+     goToUrl(3);  
+    </script>
+
+
+
+    <script>
+
+        var myIndex = 0;
+        carousel();
+
+        function carousel() {
+            var i;
+            var x = document.getElementsByClassName("mySlides");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            myIndex++;
+            if (myIndex > x.length) {
+                myIndex = 1
+            }
+            x[myIndex - 1].style.display = "block";
+            setTimeout(carousel, 4000); // Change image every 2 seconds
+        }
+    </script>{% endblock %}
+</body>
 </html>

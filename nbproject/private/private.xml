@@ -3,16 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/var/www/html/IhmProject/app/AppKernel.php</file>
+            <file>file:/var/www/html/IhmProject/src/IIT/IhmBundle/Entity/EquipeRepository.php</file>
+            <file>file:/var/www/html/IhmProject/src/IIT/IhmBundle/Controller/EquipeController.php</file>
             <file>file:/var/www/html/IhmProject/src/IIT/IhmBundle/Controller/JoueurController.php</file>
-            <file>file:/var/www/html/IhmProject/src/IIT/IhmBundle/Entity/Partie.php</file>
             <file>file:/var/www/html/IhmProject/src/IIT/IhmBundle/Resources/views/Home/home.html.twig</file>
-            <file>file:/var/www/html/IhmProject/src/IIT/IhmBundle/Controller/HeureController.php</file>
+            <file>file:/var/www/html/IhmProject/src/IIT/IhmBundle/Entity/Partie.php</file>
             <file>file:/var/www/html/IhmProject/src/IIT/IhmBundle/Entity/Joueur.php</file>
-            <file>file:/var/www/html/IhmProject/src/IIT/IhmBundle/Entity/Competition.php</file>
+            <file>file:/var/www/html/IhmProject/src/IIT/IhmBundle/Controller/PartieController.php</file>
+            <file>file:/var/www/html/IhmProject/src/IIT/IhmBundle/Entity/Equipe.php</file>
+            <file>file:/var/www/html/IhmProject/src/IIT/IhmBundle/Resources/views/Joueur/new.html.twig</file>
+            <file>file:/var/www/html/IhmProject/src/IIT/IhmBundle/Entity/FosUser.php</file>
             <file>file:/var/www/html/IhmProject/app/config/routing.yml</file>
-            <file>file:/var/www/html/IhmProject/app/Resources/views/base.html.twig</file>
-            <file>file:/var/www/html/IhmProject/src/IIT/IhmBundle/Entity/Resultat.php</file>
+            <file>file:/var/www/html/IhmProject/src/IIT/IhmBundle/Resources/views/Home/teams.html.twig</file>
+            <file>file:/var/www/html/IhmProject/src/IIT/IhmBundle/Resources/views/Joueur/index.html.twig</file>
+            <file>file:/var/www/html/IhmProject/src/IIT/IhmBundle/Entity/JoueurRepository.php</file>
         </group>
     </open-files>
 </project-private>

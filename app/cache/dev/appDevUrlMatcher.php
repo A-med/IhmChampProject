@@ -896,9 +896,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::indexAction',  '_route' => 'homepage',);
         }
 
-        // home_root
-        if ($pathinfo === '/index') {
-            return array (  '_controller' => 'IIT\\IhmBundle\\Controller\\JoueurController::homeAction',  '_route' => 'home_root',);
+        if (0 === strpos($pathinfo, '/index')) {
+            // home_root
+            if ($pathinfo === '/index') {
+                return array (  '_controller' => 'IIT\\IhmBundle\\Controller\\JoueurController::homeAction',  '_route' => 'home_root',);
+            }
+
+            // players_team
+            if (preg_match('#^/index/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'players_team')), array (  '_controller' => 'IIT\\IhmBundle\\Controller\\JoueurController::getPlayerByTeamAction',));
+            }
+
         }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();
